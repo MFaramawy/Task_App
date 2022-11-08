@@ -18,9 +18,8 @@ class CustomData {
       title: 'Office Address',
       subTitle: 'Axis Istanbul, B2 Blok',
       desc: 'Floor 2, Office 11',
-    )
+    ),
   ];
-
   static final List<Cart> cartData = [
     Cart(
       id: '1',
@@ -63,6 +62,7 @@ class CustomData {
     const Category(id: '4', image: 'image', title: 'Fish'),
     const Category(id: '5', image: 'image', title: 'Juice'),
   ];
+
   static final List<DealsOfDay> dealsOfDayData = [
     const DealsOfDay(
       id: '1',
