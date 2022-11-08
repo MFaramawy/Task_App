@@ -32,5 +32,3 @@ class DealsOfDay extends Equatable {
         isFavorite,
       ];
 }
-
-

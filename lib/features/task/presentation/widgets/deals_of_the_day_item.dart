@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:task/core/extension/size.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/core/utils/app_colors.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:task/features/task/domain/entities/deals_of_day.dart';
-import 'package:task/features/task/presentation/controller/controller.dart';
+import 'package:task/features/task/presentation/cubit/task_cubit.dart';
 
 class DealsOfTheDayItem extends StatelessWidget {
   const DealsOfTheDayItem({
@@ -19,6 +19,7 @@ class DealsOfTheDayItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<TaskCubit>(context);
     return Container(
       width: 75.w,
       height: 13.h,
@@ -111,25 +112,28 @@ class DealsOfTheDayItem extends StatelessWidget {
           Positioned(
             top: -1.5.h,
             left: -3.3.w,
-            child: GetBuilder<TaskController>(
-              builder: (controller) => InkWell(
-                onTap: () => controller.toggleFavoriteIcon(index),
-                child: Container(
-                  width: 8.w,
-                  height: 3.8.h,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
+            child: BlocSelector<TaskCubit, TaskState, bool>(
+              selector: (state) => cubit.isFavorite[index],
+              builder: (context, state) {
+                return InkWell(
+                  onTap: () => cubit.toggleFavoriteIcon(index),
+                  child: Container(
+                    width: 8.w,
+                    height: 3.8.h,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      cubit.isFavorite[index]
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      size: 4.5.w,
+                      color: AppColors.kPrimaryColor,
+                    ),
                   ),
-                  child: Icon(
-                    controller.isFavorite[index]
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    size: 4.5.w,
-                    color: AppColors.kPrimaryColor,
-                  ),
-                ),
-              ),
+                );
+              },
             ),
           ),
         ],

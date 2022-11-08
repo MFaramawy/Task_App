@@ -1,12 +1,10 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:task/core/extension/size.dart';
 import 'package:task/core/utils/app_colors.dart';
-import 'package:task/features/task/data/repositories/data.dart';
+import 'package:task/features/task/data/repositories/custom_data.dart';
 import 'package:task/features/task/presentation/widgets/deals_item.dart';
 import 'package:task/features/task/presentation/widgets/custom_shape.dart';
 import 'package:task/features/task/presentation/widgets/address_item.dart';
-import 'package:task/features/task/presentation/controller/controller.dart';
 import 'package:task/features/task/presentation/widgets/category_item.dart';
 import 'package:task/features/task/presentation/widgets/custom_search_field.dart';
 import 'package:task/features/task/presentation/widgets/deals_of_the_day_item.dart';
@@ -99,14 +97,12 @@ class HomeScreen extends StatelessWidget {
                 itemCount: CustomData.dealsOfDayData.length,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => GetBuilder<TaskController>(
-                  builder: (controller) => DealsOfTheDayItem(
-                    index: index,
-                    color: AppColors.colors[index],
-                    dealsOfDay: CustomData.dealsOfDayData[index],
-                  ),
-                ),
                 separatorBuilder: (context, index) => SizedBox(width: 6.w),
+                itemBuilder: (context, index) => DealsOfTheDayItem(
+                  index: index,
+                  color: AppColors.colors[index],
+                  dealsOfDay: CustomData.dealsOfDayData[index],
+                ),
               ),
             ),
             SizedBox(height: 3.h),

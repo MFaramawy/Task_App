@@ -1,20 +1,17 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/core/utils/assets_manager.dart';
 import 'package:task/core/extension/media_query.dart';
-import 'package:task/config/routes/routes_names.dart';
-import 'package:task/features/task/presentation/controller/controller.dart';
+import 'package:task/features/task/presentation/cubit/task_cubit.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(TaskController()).getTotalPrice();
-    Future.delayed(
-      const Duration(seconds: 4),
-      () => Get.offNamed(RoutesNames.layout),
-    );
+    BlocProvider.of<TaskCubit>(context)
+      ..getTotalPrice()
+      ..delayToLayout(context);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

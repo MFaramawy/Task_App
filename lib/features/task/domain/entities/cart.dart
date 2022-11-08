@@ -27,5 +27,3 @@ class Cart extends Equatable {
         quantity,
       ];
 }
-
-

@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:task/core/extension/size.dart';
 import 'package:task/core/utils/app_colors.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:task/features/task/data/repositories/data.dart';
+import 'package:task/features/task/data/repositories/custom_data.dart';
 import 'package:task/features/task/presentation/widgets/cart_item.dart';
 import 'package:task/features/task/presentation/widgets/custom_shape.dart';
-import 'package:task/features/task/presentation/controller/controller.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Color> colors = [
-      AppColors.color,
-      AppColors.color1,
-      AppColors.color2,
-      AppColors.color3,
-      AppColors.color4,
-    ];
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -57,14 +47,13 @@ class CartScreen extends StatelessWidget {
               child: ListView.separated(
                 itemCount: CustomData.cartData.length,
                 separatorBuilder: (context, index) => SizedBox(height: 1.5.h),
-                itemBuilder: (context, index) => GetBuilder<TaskController>(
-                  builder: (controller) => CartItem(
-                    onTapPlus: () => controller.increment(index),
-                    onTapMinus: () => controller.decrement(index),
-                    color: colors[index],
+                itemBuilder: (context, index) {
+                  return CartItem(
+                    index: index,
+                    color: AppColors.colors[index],
                     cart: CustomData.cartData[index],
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ],
