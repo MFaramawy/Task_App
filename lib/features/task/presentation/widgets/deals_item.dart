@@ -107,7 +107,6 @@ class DealsItem extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 1.h),
             ],
           ),
         ],

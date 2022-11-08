@@ -21,7 +21,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<TaskCubit>(context);
     return Container(
-      height: 10.5.h,
+      height: 11.h,
       width: double.infinity,
       padding: EdgeInsets.all(2.w),
       decoration: BoxDecoration(
@@ -61,7 +61,7 @@ class CartItem extends StatelessWidget {
               Text(
                 '\$ ${cart.price}',
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 16.sp,
                   color: AppColors.kPrimaryColor,
                   fontWeight: FontWeight.bold,
                 ),
