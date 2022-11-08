@@ -22,7 +22,7 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 10.5.h,
+      height: 11.h,
       width: double.infinity,
       padding: EdgeInsets.all(2.w),
       decoration: BoxDecoration(
